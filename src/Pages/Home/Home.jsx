@@ -7,6 +7,7 @@ import Prestige_Benifit from "./HomeComponents/Prestige_Benifit/Prestige_Benifit
 import Why_Chose_Us from "./HomeComponents/Why_Chose_Us/Why_Chose_Us";
 import SBX_Mobile_App_Section from "./HomeComponents/SBX_Mobile_App_Section/SBX_Mobile_App_Section";
 import FAQ from "./HomeComponents/FAQ/FAQ";
+import Slider from "./HomeComponents/Slider/slider";
 
 
 
@@ -39,6 +40,7 @@ const Home = () => {
       <Why_Chose_Us></Why_Chose_Us>
       <Fast_Easy_Secured_Every_Transaction />
       <SBX_Mobile_App_Section></SBX_Mobile_App_Section>
+      <Slider/>
       <FAQ></FAQ>
       <Footer />
 

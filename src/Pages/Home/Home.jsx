@@ -34,7 +34,7 @@ const Home = () => {
       >
         <NavBar className="relative " />
       </div>
-      {/* <MainHeroSection/> */}
+      <MainHeroSection/>
       <Prestige_Benifit />
       <Why_Chose_Us></Why_Chose_Us>
       <Fast_Easy_Secured_Every_Transaction />

@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div>
+       <div>
         <nav className="container mx-auto md:flex justify-between items-center text-black py-[18.5px] p-5 ">
           <div className="p-2 md:p-0 lg:p-0 ">
 
@@ -24,7 +24,7 @@ const NavBar = () => {
               transition={{
                 ease: "linear",
                 duration: 2,
-               
+
               }}> <img src={navlogo} alt=" main logo" className='h-10' /></motion.div>
 
 
@@ -39,7 +39,7 @@ const NavBar = () => {
           </motion.div>
 
           <motion.ul
-            className={`md:flex md:items-center md:bg-inherit md:pb-0 pb-12 absolute md:static text-black bg-white md:z-auto z-[1] right-0 w-full h-screen md:h-full md:w-auto md:pl-0 pl-5 transition-all duration-500 ease-in-out ${open ? 'right-19' : 'hidden'
+            className={`md:flex md:items-center md:bg-inherit md:pb-0 pb-12 absolute md:static text-gray-600 bg-white md:z-auto z-[1] right-0 w-full h-screen md:h-full md:w-auto md:pl-0 pl-5 gap-5 transition-all duration-500 ease-in-out ${open ? 'right-19' : 'hidden'
               }`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -52,7 +52,7 @@ const NavBar = () => {
                 whileHover={{ scale: 1.1 }}
               >
                 <span className="absolute inset-x-0 bottom-0 h-.5 bg-[#089bab] border-b border-transparent transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
-                <Link to={link.link} className="duration-500 font-medium">
+                <Link to={link.link} className="duration-500 font-bold">
                   {link.name}
                 </Link>
               </motion.li>
@@ -81,7 +81,10 @@ const NavBar = () => {
           </div>
         </nav>
       </div>
-      <div></div>
+      <div>
+
+      </div>
+
     </>
   );
 }

@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../../../Components/ShareableComponents/Footer/Footer";
 import GlobalButton from "../../../../Components/ShareableComponents/GlobalComponents/GlobalButton/GlobalButton";
 import CountryFlag from "react-country-flag";
@@ -9,22 +9,19 @@ import CurrencyInput from "react-currency-input-field";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
-
 const MainHeroSection = () => {
-const [isRegistered, setIsRegistered] = useState(null); // Initialize with null
+  const [isRegistered, setIsRegistered] = useState(null); // Initialize with null
 
-useEffect(() => {
-  const isUserRegistered = localStorage.getItem("isRegistered");
+  useEffect(() => {
+    const isUserRegistered = localStorage.getItem("isRegistered");
 
-  // Check if the value exists in local storage
-  if (isUserRegistered !== null) {
-    // If it exists, convert it to a boolean
-    const isRegisteredValue = isUserRegistered === "true";
-    setIsRegistered(isRegisteredValue);
-  }
-}, []);
-
-
+    // Check if the value exists in local storage
+    if (isUserRegistered !== null) {
+      // If it exists, convert it to a boolean
+      const isRegisteredValue = isUserRegistered === "true";
+      setIsRegistered(isRegisteredValue);
+    }
+  }, []);
 
   const cuntriesOptions = Object.keys(currencies).map((currency, index) => ({
     value: currencies[currency].code,
@@ -177,7 +174,7 @@ useEffect(() => {
                 to handle Money Transfer transactions.
               </p>
             </div>
-            <div className="flex  flex-wrap  gap-2 ">
+            <div className="flex  lg:flex-wrap  gap-2 ">
               <div>
                 <GlobalButton
                   onClick={handleButtonClick}
@@ -216,7 +213,7 @@ useEffect(() => {
                 <form className="mt-2" onSubmit={handleButtonClick}>
                   <div>
                     <label
-                      for="countries"
+                      htmlFor="countries"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                     >
                       Select your country (From)
@@ -231,7 +228,7 @@ useEffect(() => {
                   </div>
                   <div>
                     <label
-                      for="countries"
+                      htmlFor="countries"
                       className="block mt-2 mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                     >
                       To
@@ -252,7 +249,7 @@ useEffect(() => {
                     Amount
                   </label>
 
-                  <div className="grid md:grid-cols-3 justify-between md:gap-6 mt-2">
+                  <div className="grid grid-cols-1 md:grid-cols-3 justify-between md:gap-6 mt-2">
                     <div className="   mb-5">
                       <CurrencyInput
                         type="text"
@@ -271,7 +268,6 @@ useEffect(() => {
                       >
                         <option value="">select value</option>
                         <option>Bank ET</option>
-
                         <option>Bank FR</option>
                         <option>Bkash</option>
                         <option>Cash FR</option>

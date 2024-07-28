@@ -140,8 +140,8 @@ const Footer = () => {
 
 			</div>
 			<div className="bg-green-400">
-				<div className="container py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-					<p className="text-white  text-sm text-center sm:text-left">Copyright © 2023 Tutor2U ABN Number 20611064601</p>
+				<div className="container  py-4 px-5 flex justify-center flex-wrap flex-col sm:flex-row">
+					<p className="text-white  text-sm text-center ">Copyright © 2023 Tutor2U ABN Number 20611064601</p>
 				</div>
 			</div>
 		</>

@@ -1,32 +1,33 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { TiTickOutline } from "react-icons/ti";
+import benefit from '../../../../../public/Group2.avif'
 const Prestige_Benifit = () => {
   const items = [
     {
       title: "Easy Transaction",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor incididunt"
+      description: "Make sending money a breeze with our easy-to-use interface, guaranteeing a hassle-free experience every time. "
     },
     {
       title: "Guaranteed Security like no other",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor incididunt"
+      description: "Rest assured knowing your financial transactions are safeguarded with the utmost level of protection."
     },
     {
       title: "Innovation",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor incididunt"
+      description: "Bringing you cutting-edge solutions that redefine the way you manage and transfer funds, making your financial journey more efficient and convenient. "
     }
   ];
   return (
     <>
-      <section class="overflow-hidden bg-white py-8 sm:py-16">
-        <div class="container mx-auto ">
-          <div class="mx-auto grid  grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2  ">
+      <section className="overflow-hidden bg-white py-8 sm:py-16">
+        <div className="container mx-auto ">
+          <div className="mx-auto grid  grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2  ">
             <motion.img initial={{ x: "-100vw", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ ease: "easeInOut", duration: 1, delay: 0.5 }} src="/src/assets/Group2.png" alt="Product screenshot" class="w-full h-auto flex justify-center items-center" />
-            <div class="lg:pr-8 l">
+              transition={{ ease: "easeInOut", duration: 1, delay: 0.5 }} src={benefit} alt="Product screenshot" className="w-full h-auto flex justify-center items-center" />
+            <div className="lg:pr-8 l">
 
-              <div class="">
+              <div className="">
                 <motion.p
                   initial={{ x: "-100vw", opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
@@ -39,10 +40,9 @@ const Prestige_Benifit = () => {
                   initial={{ x: "-100vw", opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ ease: "easeInOut", duration: 1, delay: 0.5 }}
-                  className="mt-6 text-lg leading-8 text-gray-600  text-center lg:text-start"
+                  className="mt-6 text-lg leading-8 text-gray-600  text-center lg:text-start font-medium"
                 >
-                  Lorem ipsum dolor sit amet, consectetur dipiscing elit eius mod tempor incididunt ut labore Lorem ipsum dolor
-                  sit amet, consectetur dipiscing elit eius mod tempor incididunt ut labore
+                  Enjoy exclusive perks and privileges with our Prestige Benefits program.
                 </motion.p>
 
 
@@ -64,7 +64,7 @@ const Prestige_Benifit = () => {
                           transition={{ ease: "easeInOut", duration: 1 }} className="mb-2 font-semibold leading-5 text-black">{item.title}</motion.h6>
                         <motion.p initial={{ x: "-100vw", opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
-                          transition={{ ease: "easeInOut", duration: 1 }} className="mb-3 text-sm text-gray-900">{item.description}</motion.p>
+                          transition={{ ease: "easeInOut", duration: 1 }} className="mb-3 text-sm max-w-md text-gray-900">{item.description}</motion.p>
                       </dd>
                     </div>
                   ))}

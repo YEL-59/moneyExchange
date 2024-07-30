@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../../../Components/ShareableComponents/Footer/Footer";
 import GlobalButton from "../../../../Components/ShareableComponents/GlobalComponents/GlobalButton/GlobalButton";
 import CountryFlag from "react-country-flag";
@@ -8,20 +8,14 @@ import currencies from "../../../../../public/commonCurrency.json";
 import CurrencyInput from "react-currency-input-field";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainHeroSection = () => {
-  const [isRegistered, setIsRegistered] = useState(null); // Initialize with null
+  const [isRegistered, setIsRegistered] = useState(null); 
+ 
 
-  useEffect(() => {
-    const isUserRegistered = localStorage.getItem("isRegistered");
 
-    // Check if the value exists in local storage
-    if (isUserRegistered !== null) {
-      // If it exists, convert it to a boolean
-      const isRegisteredValue = isUserRegistered === "true";
-      setIsRegistered(isRegisteredValue);
-    }
-  }, []);
 
   const cuntriesOptions = Object.keys(currencies).map((currency, index) => ({
     value: currencies[currency].code,
@@ -37,16 +31,11 @@ const MainHeroSection = () => {
   const initialExchangeRateAmount = 0;
   const initialSelectAmount = 1;
 
-  const [selectedCurrencyFrom, setSelectedCurrencyFrom] =
-    useState(initialCurrencyFrom);
-  const [selectedCurrencyTo, setSelectedCurrencyTo] =
-    useState(initialCurrencyTo);
+  const [selectedCurrencyFrom, setSelectedCurrencyFrom] = useState(initialCurrencyFrom);
+  const [selectedCurrencyTo, setSelectedCurrencyTo] = useState(initialCurrencyTo);
   const [totalPay, setTotalPay] = useState(initialTotalPay);
-  const [exchangeRateAmount, setExchangeRateAmount] = useState(
-    initialExchangeRateAmount
-  );
+  const [exchangeRateAmount, setExchangeRateAmount] = useState(initialExchangeRateAmount);
   const [selectAmount, setSelectAmount] = useState(initialSelectAmount);
-
   const [exchangeRates, setExchangeRates] = useState({});
   const URL = `https://v6.exchangerate-api.com/v6/e6275e44ecb29da0333681c6/latest/USD`;
 
@@ -75,37 +64,29 @@ const MainHeroSection = () => {
         setTotalPay(convertedAmount.toFixed(2));
         setExchangeRateAmount(conversionRate.toFixed(4));
 
-        // Save to localStorage
-        //localStorage.setItem("totalPay", convertedAmount.toFixed(2));
-        //localStorage.setItem("exchangeRateAmount", conversionRate.toFixed(4));
+
       }
     }
   };
 
   const handleSelectTo = (_eTo) => {
     setSelectedCurrencyTo(_eTo);
-    //localStorage.setItem("selectedCurrencyTo", JSON.stringify(_eTo));
+
   };
 
   const handleSelectFrom = (_eFrom) => {
     setSelectedCurrencyFrom(_eFrom);
-    //localStorage.setItem("selectedCurrencyFrom", JSON.stringify(_eFrom));
+
   };
 
   const handleAmountChange = (value) => {
     setSelectAmount(value);
-    //localStorage.setItem("selectAmount", value);
+
   };
 
   const handleClose = () => {
     // Log form data to the console
-    console.log({
-      selectedCurrencyFrom,
-      selectedCurrencyTo,
-      selectAmount,
-      exchangeRateAmount,
-      totalPay,
-    });
+    console.log({ selectedCurrencyFrom, selectedCurrencyTo, selectAmount, exchangeRateAmount, totalPay, });
   };
 
   useEffect(() => {
@@ -115,29 +96,32 @@ const MainHeroSection = () => {
   }, [selectedCurrencyTo, selectedCurrencyFrom]);
 
   const handleButtonClick = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
+    event.preventDefault();
+    // Check if the user is registered
+    const accessToken = localStorage.getItem("accessToken");
     // Logic to check if the user is registered
-    if (isRegistered) {
-      // Display the component for registered users
-      alert("User is registered. Showing registered component.");
-      navigate("/register");
+    if (accessToken) {
+      navigate("/sendmoney");
     } else {
-      // Display the register component
-      alert("User is not registered. Showing registration component.");
-      navigate("/sign_up");
+      navigate("/sign_in");
     }
   };
 
-  const handleCalculate = (event) => {
-    event.preventDefault(); // Prevent form submission
 
+  const handleCalculate = (event) => {
+    event.preventDefault();
+    // Validate the amount
+    if (selectAmount <= 0) {
+      toast.error("Please enter a valid amount greater than zero.");
+      return;
+    }
     // Call handleConvert to calculate the total pay amount and show conversion rate
     handleConvert();
   };
 
   return (
     <>
+      <ToastContainer />
       <section className="bg-[#CDFFDB] p-2">
         <div className=" container mx-auto grid grid-cols-1 lg:grid-cols-2  gap-10 items-center justify-items-end p-5">
           <motion.div
@@ -213,7 +197,7 @@ const MainHeroSection = () => {
                 <form className="mt-2" onSubmit={handleButtonClick}>
                   <div>
                     <label
-                      htmlFor="countries"
+                      for="countries"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                     >
                       Select your country (From)
@@ -228,7 +212,7 @@ const MainHeroSection = () => {
                   </div>
                   <div>
                     <label
-                      htmlFor="countries"
+                      for="countries"
                       className="block mt-2 mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
                     >
                       To
@@ -249,7 +233,7 @@ const MainHeroSection = () => {
                     Amount
                   </label>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 justify-between md:gap-6 mt-2">
+                  <div className="grid md:grid-cols-2 justify-between md:gap-6 mt-2">
                     <div className="   mb-5">
                       <CurrencyInput
                         type="text"
@@ -261,18 +245,19 @@ const MainHeroSection = () => {
                         placeholder="amount"
                       />
                     </div>
-                    <div className="relative z-0 w-full mb-5 group">
+                    {/* <div className="relative z-0 w-full mb-5 group">
                       <select
                         id="countries"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                       >
                         <option value="">select value</option>
                         <option>Bank ET</option>
+
                         <option>Bank FR</option>
                         <option>Bkash</option>
                         <option>Cash FR</option>
                       </select>
-                    </div>
+                    </div> */}
                     <div className="relative z-0 w-full  group">
                       <button
                         onClick={handleCalculate}
